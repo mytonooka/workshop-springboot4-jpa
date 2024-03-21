@@ -2,7 +2,6 @@ package com.mytonooka.course.config;
 
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.mytonooka.course.entites.Category;
 import com.mytonooka.course.entites.Order;
 import com.mytonooka.course.entites.OrderItem;
+import com.mytonooka.course.entites.Payment;
 import com.mytonooka.course.entites.Product;
 import com.mytonooka.course.entites.User;
 import com.mytonooka.course.entites.enums.OrderStatus;
@@ -83,10 +83,10 @@ public class TestConfig implements CommandLineRunner {
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
 		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
 		
-		
-		
-		
+		o1.setPayment(pay1);
+		orderRepository.save(o1);
 		
 	}
 	
