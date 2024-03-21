@@ -3,7 +3,8 @@ package com.mytonooka.course.entites;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.mytonooka.course.entites.pk.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mytonooka.course.entites.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -16,8 +17,10 @@ public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrderItemPk id;
+	private OrderItemPK id = new OrderItemPK();
+	
 	private Integer quantity;
+	
 	private Double price;
 	
 	public OrderItem() {
@@ -31,6 +34,7 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
