@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mytonooka.course.entites.Product;
 import com.mytonooka.course.repositories.ProductRepository;
+import com.mytonooka.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProductService  {
@@ -21,7 +22,7 @@ public class ProductService  {
 
 	public Product findById(Long id) {
 		Optional<Product> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 		
 	}
 }

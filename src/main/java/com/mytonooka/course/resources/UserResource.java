@@ -58,8 +58,6 @@ public class UserResource {
 		
 		service.delete(id);
 		
-		System.out.println("Registro deletado");
-		
 		return ResponseEntity.noContent().build();
 			
 	}
